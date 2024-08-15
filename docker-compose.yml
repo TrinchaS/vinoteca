@@ -47,6 +47,13 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    buggregator:
+        image: butschster/buggregator:latest
+        ports:
+        - 8000:8000
+        - 1026:1026
+        - 9912:9912
+        - 9913:9913
 networks:
     sail:
         driver: bridge
