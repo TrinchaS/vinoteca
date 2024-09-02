@@ -27,6 +27,6 @@ class UploadService
 
     //no accedemos al contenido solo a la url
     public static function url(string $path, string $disk = 'public'): string{
-        return Storage::url($path); //disk($disk)->url($path);
+        return Storage::url($path); //disk($disk)->url($path) o Storage::disk($disk)->url;
     }
 }

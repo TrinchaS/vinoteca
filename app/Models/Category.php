@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Services\UploadService;
 use App\Traits\HasSlug;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Traits\ImageUrl;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
     use HasSlug;
+    use ImageUrl;
 
     protected $fillable = [
         'name',
@@ -22,10 +22,4 @@ class Category extends Model
         return $this->hasMany(Wine::class);
     }
 
-    public function imageUrl(): Attribute{
-        //image_url
-        return Attribute::make(
-            get: fn() => UploadService::url($this->image),
-        );
-    }
 }
