@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Wine;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+
+use function Laravel\Prompts\alert;
 
 class CategoryController extends Controller
 {
@@ -27,5 +31,12 @@ class CategoryController extends Controller
             'method' => 'POST',
             'submit' => 'Crear',
         ]);
+    }
+
+    public function store(CategoryRequest $request){//:RedirectResponse{
+        //$validado = $request->validated();
+        //ray($validado);
+        $this->repository->create($request->validated());
+        return redirect()->route('categories.index');
     }
 }

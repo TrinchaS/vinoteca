@@ -21,10 +21,14 @@ class CategoryRequest extends FormRequest
      */
     public function rules(): array
     {
+        $imageRules = 'sometimes | image | mimes:jpeg,jpg,png | max:2048';
+        if ($this->isMethod('post')){
+            $imageRules = 'required | image | mimes:jpeg,jpg,png | max:2048';
+        }
         return [
             'name' => 'required | string | max:255',
             'description' => 'required | string | max:2000',
-            'image' => 'sometimes | image | mimes:jpeg,jpg,png | max:2048'
+            'image' => $imageRules
         ];
     }
 
@@ -38,7 +42,8 @@ class CategoryRequest extends FormRequest
             'description.max' => 'La descripción no debe exceder los :max caracteres.',
             'image.image' => 'El archivo debe ser una imagen.',
             'image.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg.',
-            'image.max' => 'La imagen no debe exceder los :max kilobytes.'
+            'image.max' => 'La imagen no debe exceder los :max kilobytes.',
+            'image.required' => 'La imagen es requerida'
         ];
     }
 }
