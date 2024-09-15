@@ -33,10 +33,9 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function store(CategoryRequest $request){//:RedirectResponse{
-        //$validado = $request->validated();
-        //ray($validado);
+    public function store(CategoryRequest $request):RedirectResponse{
         $this->repository->create($request->validated());
+        session()->flash('success','Categoría creada con éxito');
         return redirect()->route('categories.index');
     }
 }
