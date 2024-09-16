@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use PhpParser\Node\Stmt\TryCatch;
 
 use function Laravel\Prompts\alert;
 
@@ -52,6 +54,16 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category):RedirectResponse{
         $this->repository->update($request->validated(), $category);
         session()->flash('success','Categoría actualizada con éxito');
+        return redirect()->route('categories.index');
+    }
+
+    public function destroy(Category $category):RedirectResponse{
+        try{
+            $this->repository->delete($category);
+            session()->flash('success','Categoría eliminada con éxito.');
+        }catch(Exception $exception){
+            session()->flash('error',$exception->getMessage());
+        }
         return redirect()->route('categories.index');
     }
 }
