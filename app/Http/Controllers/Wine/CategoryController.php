@@ -9,9 +9,6 @@ use App\Repositories\Category\CategoryRepositoryInterface;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use PhpParser\Node\Stmt\TryCatch;
-
-use function Laravel\Prompts\alert;
 
 class CategoryController extends Controller
 {

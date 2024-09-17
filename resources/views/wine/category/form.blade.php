@@ -27,7 +27,7 @@
                             id="image"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-white leading-tight focus:outline-none focus:shadow-outline">
                         @error('image')
-                        <p class="text-red-500 text-xs italic">{{$message}}</p>
+                            <p class="text-red-500 text-xs italic">{{$message}}</p>
                         @enderror
                     </div>
 
@@ -44,10 +44,10 @@
 
                     <div class="mb-4">
                         <a href="{{ route('categories.index')}}"
-                            class="bg-gray-500 hover:bg-gray-700 text-white font-blod py-2 px-4 rounded">
+                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                             Cancelar
                         </a>
-                        <button type="submit" class="bg-blue-500 hoverbg-blue-700 text-white font-bold py-2 px-4 ms-2 rounded">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ms-2 rounded">
                             {{ $submit }}
                         </button>
                     </div>
