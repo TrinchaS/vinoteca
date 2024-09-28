@@ -20,7 +20,7 @@ interface CartRepositoryInterface
     public function remove(int $wineId): void;
 
     //numero de elementos en el carrito del vino que estamos pasando
-    public function getTotalQuantityForWine(Wine $wine): float;
+    public function getTotalQuantityForWine(Wine $wine): int;
 
     //Coste total para el producto dado y un bool para saber si lo queremos formateado o no
     public function getTotalCostForWine(Wine $wine, bool $formatted): float|string;
