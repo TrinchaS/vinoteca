@@ -4,8 +4,8 @@ namespace App\Repositories\Cart;
 
 use App\Models\Wine;
 use App\Traits\WithCurrencyFormatter;
+use Exception;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Exceptions;
 use Illuminate\Support\Facades\Session;
 
 class SessionCartRepository implements CartRepositoryInterface
@@ -39,7 +39,7 @@ class SessionCartRepository implements CartRepositoryInterface
         $cart = $this->getCart();
         if($cart->has($wine->id)){
             if(data_get($cart->get($wine->id),'quantity') >= $wine->stock){
-                throw new Exceptions('No hay suficiente stock para incrementat la cantidad de ' . $wine->name);
+                throw new Exception('No hay suficiente stock para incrementat la cantidad de ' . $wine->name);
             }
             $wineInCart = $cart->get($wine->id);
             $wineInCart['quantity']++;
